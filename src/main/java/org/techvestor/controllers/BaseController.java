@@ -10,6 +10,12 @@ public class BaseController {
 
     @RequestMapping(value = "/welcome", method = RequestMethod.GET)
     public ModelAndView welcome() {
-        return new ModelAndView("welcome");
+        System.out.println("Print");
+        return new ModelAndView("/static/index.html");
+    }
+
+    @RequestMapping(value = "/shelcome", method = RequestMethod.GET)
+    public ModelAndView shelcome() {
+        return new ModelAndView("index.html");
     }
 }

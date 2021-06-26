@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <script src="./static/library/react.js"></script>
+    <script src="./static/library/react-dom.js"></script>
+    <script src="./static/library/babel.min.js" charset="UTF-8"></script>
+    <link rel="stylesheet" href="./static/css/bootstrap.min.css">
+</head>
+<body>
+<div id="commentApp" class="container"></div>
+<script type="text/babel">
+	/*
+		React JS First Application
+	*/
+
+		var ParentContainer = React.createClass({
+
+			getInitialState	: function() {
+				return {
+						comments : [
+							'I like Bacon',
+							'I like Ice-Cream',
+							'I like Tuna'
+						]
+				};
+			},
+			eachComment	: function(text, i) {
+				return (
+						<CommentComponent key={i} index={i} removeComment={this.removeComment} updateComment={this.updateComment}>
+								{text}</CommentComponent>
+						);
+			},
+
+			removeComment : function(index) {
+				console.log('About to remove comment '+(index+1));
+				var cmntArr = this.state.comments;
+				cmntArr.splice(index,1);
+				this.setState({comments : cmntArr});
+			},
+
+			updateComment : function(index, newText) {
+				console.log('About to update comment '+(index+1));
+				var cmntArr = this.state.comments;
+				cmntArr[index] = newText;
+				this.setState({comments : cmntArr});
+			},
+
+			addComment : function(defaultText) {
+				var cmntArr = this.state.comments;
+				cmntArr.push(defaultText);
+				this.setState({comments : cmntArr});
+			},
+
+			render	: function() {
+				return (
+						<div>
+							<button className="btn btn-primary" onClick={this.addComment.bind(null,'New Comment')}>Add Comment</button>
+							{this.state.comments.map(this.eachComment)}
+						</div>
+						);
+			}
+		});
+		var CommentComponent = React.createClass({
+
+			getInitialState	: function() {
+				return {editMode : false};
+			},
+
+			render	: function() {
+
+				if(this.state.editMode)
+					return this.renderEditMode();
+				else
+					return this.renderNormalMode();
+			},
+
+			renderNormalMode : function() {
+
+				return (
+					<div className="hero">
+						<p align="center">{this.props.children}</p>
+						<button onClick={this.onEditClick} className="btn btn-warning">Edit</button>
+						&nbsp;&nbsp;&nbsp;
+						<button onClick={this.onRemoveClick} className="btn btn-danger">Remove</button>
+						<hr/>
+					</div>
+				);
+			},
+
+			renderEditMode : function() {
+
+				return (
+					<div className="hero">
+						<textarea ref="newText" defaultValue={this.props.children}></textarea><br/>
+						<button onClick={this.onSaveClick} className="btn btn-success">Save</button>
+						<hr/>
+					</div>
+				);
+			},
+
+			onEditClick	: function() {
+				console.log("Edit button clicked!");
+				this.setState({editMode:true});
+			},
+
+			onRemoveClick	: function() {
+				console.log("Remove button clicked!");
+				this.props.removeComment(this.props.index);
+
+			},
+
+			onSaveClick	: function() {
+				console.log("Save button clicked!");
+				console.log('Entered text is : '+this.refs.newText.value);
+				this.setState({editMode:false});
+				this.props.updateComment(this.props.index, this.refs.newText.value);
+			}
+		});
+
+		ReactDOM.render(<ParentContainer/>, document.getElementById('commentApp'));
+
+	</script>
+</body>
+</html>
