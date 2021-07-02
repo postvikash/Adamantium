@@ -11,7 +11,7 @@
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <context:component-scan base-package="org.techvestor.controllers" />
+    <context:component-scan base-package="org.techvestor" />
     <mvc:resources mapping="/resources/**" location="/WEB-INF/resources/" />
     <mvc:annotation-driven/>
 
