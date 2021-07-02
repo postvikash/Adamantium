@@ -2,6 +2,7 @@ package org.techvestor.controllers;
 
 import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,6 +14,7 @@ public class TopRestController {
     @Autowired
     private RestTemplate restTemplate;
 
+    @CrossOrigin(origins = "http://localhost:8080")
     @RequestMapping(value="/top-headlines", method =  RequestMethod.GET)
     public TopHeadlines topHeadlines() {
         Gson gson = new Gson();
