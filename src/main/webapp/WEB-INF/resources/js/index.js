@@ -130,9 +130,9 @@ var NewsContainer = React.createClass({
           );
     },
 
-    eachArticle: function(article) {
+    eachArticle: function(article, i) {
         return(
-            <div className="col-sm-10 col-xs-10 col-md-6 col-lg-4">
+            <div key={i} className="col-sm-10 col-xs-10 col-md-6 col-lg-4">
                 <span><h4>{article.title}</h4> </span>
                 <br/>
                 <img className ="img-fluid" src={article.image} />
@@ -154,4 +154,4 @@ var NewsContainer = React.createClass({
                     </div>);
     }
 });
-ReactDOM.render(<ParentContainer/>, document.getElementById('commentApp'));
+ReactDOM.render(<ParentContainer/>, document.getElementById('newsApp'));
