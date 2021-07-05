@@ -133,7 +133,7 @@ var NewsContainer = React.createClass({
     eachArticle: function(article, i) {
         return(
             <div key={i} className="col-sm-10 col-xs-10 col-md-6 col-lg-4">
-                <span><h4>{article.title}</h4> </span>
+                <span><h5>{article.title}</h5> </span>
                 <br/>
                 <img className ="img-fluid" src={article.image} />
                 <br/>
