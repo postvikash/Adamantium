@@ -7,6 +7,11 @@
   animation: spin 2s linear infinite;
 }
 
+.logo {
+max-width: 10rem;
+max-height: 5rem;
+}
+
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
