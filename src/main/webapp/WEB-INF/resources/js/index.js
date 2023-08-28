@@ -116,7 +116,7 @@ var NewsContainer = React.createClass({
         /* PROD: fetch("/top-headlines")   */
         const params = new URLSearchParams(window.location.search)
         const newsType = params.has('newsTopic') ? params.get('newsTopic') : 'breaking-news';
-        fetch("/Adamantium/top-headlines?newsTopic="+newsType)
+        fetch("/top-headlines?newsTopic="+newsType)
           .then( res => res.json())
           .then(
             (data) => {
