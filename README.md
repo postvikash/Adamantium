@@ -1,8 +1,5 @@
-Modify this function to make things work in Production
+###Launching the app without Apache2 and ProxyConfiguration would 
+require routing request from port 80 to 8080
 
-componentDidMount() {
-/* DEV: fetch("/Adamantium/top-headlines")   */
-/* PROD: fetch("/top-headlines")   */
-
-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
-AccessToken
+- Command to execute:
+ * sudo iptables -A PREROUTING -t nat -i eth0 -p tcp --dport 80 -j REDIRECT --to-port 8080
